@@ -43,8 +43,8 @@ Ray cluster before evaluation. `OPD_GPU_PLACEMENT` denotes physical GPU ranks.
 
 Configs live under `evaluations/libero/` and inherit
 `_libero_opd_vlm_lora_eval.yaml`. Each suite config defines its own episode
-horizon and rollout length. The shared config defaults to `flow_ode`; use
-`flow_sde` with noise level 0.3 for the reported gs500 results:
+horizon and rollout length. The following command uses the shared config's
+default `flow_ode` sampler:
 
 ```bash
 for suite in spatial object goal 10; do
@@ -53,8 +53,7 @@ for suite in spatial object goal 10; do
     --config-name "libero_${suite}_opd_vlm_lora_eval" \
     env.eval.seed=0 \
     env.eval.use_ordered_reset_state_ids=false \
-    rollout.model.openpi.noise_method=flow_sde \
-    rollout.model.openpi.noise_level=0.3 \
+    rollout.model.openpi.noise_method=flow_ode \
     rollout.model.openpi.train_expert_only=true \
     runner.logger.log_path="/path/to/evaluation-results/gs500/$suite" || break
 done
@@ -66,7 +65,7 @@ state IDs, auto-reset enabled, terminations ignored, 256×256 images, five
 denoising steps and ten-action chunks. Goal uses horizon **320**;
 LIBERO-10 uses **520**.
 
-评测使用 `flow_sde`、noise level 0.3、50 个并行环境，每个 suite
+上述命令使用 `flow_ode`、50 个并行环境，每个 suite
 评测 500 个 episode。上述命令设置相应参数，评测入口会在内存中合并 LoRA。
 
 ## Evaluation results / 评测结果

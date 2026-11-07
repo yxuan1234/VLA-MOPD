@@ -12,8 +12,7 @@ Use the dedicated configs in `evaluations/libero/`:
 These recipes match language-model-only VLM LoRA rank 32, five flow-ODE
 denoising steps and ten-action chunks. Match these settings to the training
 run if you change the recipe. Each suite defaults to 500 episodes with fixed
-reset state IDs and video disabled. For the reported gs500 results, override the
-sampler to `flow_sde` with noise level 0.3.
+reset state IDs and video disabled. The default sampler is `flow_ode`.
 
 ## Checkpoint inputs
 

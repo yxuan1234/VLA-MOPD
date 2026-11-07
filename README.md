@@ -119,7 +119,7 @@ from the four-suite gs500 consolidation run. See [reference routing details](doc
 
 ### 3. Evaluate all four suites
 
-Each suite config in `evaluations/libero/` already defines its horizon and rollout length. This command supplies the sampler settings used for the reported results:
+Each suite config in `evaluations/libero/` defines its horizon and rollout length. This command evaluates with the default `flow_ode` sampler:
 
 ```bash
 for suite in spatial object goal 10; do
@@ -128,8 +128,7 @@ for suite in spatial object goal 10; do
     --config-name "libero_${suite}_opd_vlm_lora_eval" \
     env.eval.seed=0 \
     env.eval.use_ordered_reset_state_ids=false \
-    rollout.model.openpi.noise_method=flow_sde \
-    rollout.model.openpi.noise_level=0.3 \
+    rollout.model.openpi.noise_method=flow_ode \
     rollout.model.openpi.train_expert_only=true \
     runner.logger.log_path="/path/to/evaluation-results/gs500/$suite" || break
 done

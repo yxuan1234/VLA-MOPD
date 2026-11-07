@@ -116,7 +116,7 @@ suite 调度、episode horizon、训练步数和每 50 步保存 checkpoint 均�
 
 ### 3. 运行四-suite 评测
 
-每个 suite 的 horizon 和 rollout 长度已定义在 `evaluations/libero/` 对应的 YAML 中。以下命令设置报告结果所用的 sampler 参数：
+每个 suite 的 horizon 和 rollout 长度已定义在 `evaluations/libero/` 对应的 YAML 中。以下命令使用默认的 `flow_ode` sampler 进行评测：
 
 ```bash
 for suite in spatial object goal 10; do
@@ -125,8 +125,7 @@ for suite in spatial object goal 10; do
     --config-name "libero_${suite}_opd_vlm_lora_eval" \
     env.eval.seed=0 \
     env.eval.use_ordered_reset_state_ids=false \
-    rollout.model.openpi.noise_method=flow_sde \
-    rollout.model.openpi.noise_level=0.3 \
+    rollout.model.openpi.noise_method=flow_ode \
     rollout.model.openpi.train_expert_only=true \
     runner.logger.log_path="/path/to/evaluation-results/gs500/$suite" || break
 done
