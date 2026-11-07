@@ -116,21 +116,13 @@ suite 调度、episode horizon、训练步数和每 50 步保存 checkpoint 均�
 
 ### 3. 运行四-suite 评测
 
-每个 suite 的 horizon 和 rollout 长度已定义在 `evaluations/libero/` 对应的 YAML 中。以下命令使用默认的 `flow_ode` sampler 进行评测：
+| Suite | 评测配置 |
+| --- | --- |
+| Spatial | [`libero_spatial_opd_vlm_lora_eval.yaml`](evaluations/libero/libero_spatial_opd_vlm_lora_eval.yaml) |
+| Object | [`libero_object_opd_vlm_lora_eval.yaml`](evaluations/libero/libero_object_opd_vlm_lora_eval.yaml) |
+| Goal | [`libero_goal_opd_vlm_lora_eval.yaml`](evaluations/libero/libero_goal_opd_vlm_lora_eval.yaml) |
+| LIBERO-10 | [`libero_10_opd_vlm_lora_eval.yaml`](evaluations/libero/libero_10_opd_vlm_lora_eval.yaml) |
 
-```bash
-for suite in spatial object goal 10; do
-  python evaluations/eval_embodied_agent.py \
-    --config-path libero \
-    --config-name "libero_${suite}_opd_vlm_lora_eval" \
-    env.eval.seed=0 \
-    env.eval.use_ordered_reset_state_ids=false \
-    rollout.model.openpi.noise_method=flow_ode \
-    rollout.model.openpi.train_expert_only=true \
-    runner.logger.log_path="/path/to/evaluation-results/gs500/$suite" || break
-done
-```
-
-评测入口会恢复完整 checkpoint 并在内存中 merge LoRA，不需要额外转换或预先 merge。更多信息见[完整评测教程](docs/opd-gs500.md)和[训练配置说明](docs/opd-training-launch.md)。
+通用评测流程见 [RLinf LIBERO 评测指南](https://rlinf.readthedocs.io/zh-cn/latest/rst_source/evaluations/guides/libero.html)，checkpoint 设置和具体命令见 [VLA-MOPD 评测详情](docs/opd-gs500.md)。评测入口会恢复完整 checkpoint 并在内存中 merge LoRA。
 
 本实现基于 [RLinf](https://github.com/RLinf/RLinf)；上游框架论文见 [RLinf paper](https://arxiv.org/abs/2509.15965)。VLA-MOPD 预印本发布后会补充论文链接。

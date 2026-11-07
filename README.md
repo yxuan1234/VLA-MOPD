@@ -119,21 +119,13 @@ from the four-suite gs500 consolidation run. See [reference routing details](doc
 
 ### 3. Evaluate all four suites
 
-Each suite config in `evaluations/libero/` defines its horizon and rollout length. This command evaluates with the default `flow_ode` sampler:
+| Suite | Evaluation config |
+| --- | --- |
+| Spatial | [`libero_spatial_opd_vlm_lora_eval.yaml`](evaluations/libero/libero_spatial_opd_vlm_lora_eval.yaml) |
+| Object | [`libero_object_opd_vlm_lora_eval.yaml`](evaluations/libero/libero_object_opd_vlm_lora_eval.yaml) |
+| Goal | [`libero_goal_opd_vlm_lora_eval.yaml`](evaluations/libero/libero_goal_opd_vlm_lora_eval.yaml) |
+| LIBERO-10 | [`libero_10_opd_vlm_lora_eval.yaml`](evaluations/libero/libero_10_opd_vlm_lora_eval.yaml) |
 
-```bash
-for suite in spatial object goal 10; do
-  python evaluations/eval_embodied_agent.py \
-    --config-path libero \
-    --config-name "libero_${suite}_opd_vlm_lora_eval" \
-    env.eval.seed=0 \
-    env.eval.use_ordered_reset_state_ids=false \
-    rollout.model.openpi.noise_method=flow_ode \
-    rollout.model.openpi.train_expert_only=true \
-    runner.logger.log_path="/path/to/evaluation-results/gs500/$suite" || break
-done
-```
-
-The evaluator restores the full checkpoint and merges LoRA in memory; no separate conversion or merge step is needed. See [the full evaluation guide](docs/opd-gs500.md) and [training configs](docs/opd-training-launch.md).
+See the [RLinf LIBERO evaluation guide](https://rlinf.readthedocs.io/en/latest/rst_source/evaluations/guides/libero.html) for the evaluation workflow and [VLA-MOPD evaluation details](docs/opd-gs500.md) for checkpoint setup and commands. The evaluator restores the full checkpoint and merges LoRA in memory.
 
 This implementation is built on [RLinf](https://github.com/RLinf/RLinf); see the [RLinf paper](https://arxiv.org/abs/2509.15965) for the upstream framework. The VLA-MOPD preprint link will be added when available.
