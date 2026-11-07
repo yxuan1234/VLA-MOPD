@@ -29,8 +29,6 @@
 | LIBERO-10 Teacher | [`yxuan1234/Pi05-LIBERO10-Teacher`](https://huggingface.co/yxuan1234/Pi05-LIBERO10-Teacher) | LIBERO-10 使用的冻结 PPO Teacher |
 | OPD Student，global step 500 | [`yxuan1234/Pi05-LIBERO-OPD-Student-gs500`](https://huggingface.co/yxuan1234/Pi05-LIBERO-OPD-Student-gs500) | 发布的蒸馏模型，也是上方评测结果对应的模型 |
 
-三个 `yxuan1234` 模型仓库目前为私有，需要有权限的 HF 账号；RLinf Base SFT 仓库为公开。
-
 ### 1. 安装 RLinf OpenPI + LIBERO 环境
 
 按照 [RLinf 官方安装文档](https://rlinf.readthedocs.io/zh-cn/latest/rst_source/start/installation.html)配置环境，然后在仓库根目录运行：

@@ -36,10 +36,8 @@ export RAY_ADDRESS=127.0.0.1:YOUR_RAY_PORT
 
 The base SFT model is required by the release loader. Connect to your allocated
 Ray cluster before evaluation. `OPD_GPU_PLACEMENT` denotes physical GPU ranks.
-While the HF repository is private, download requires an authorized HF login.
 
-需要另行准备 Base SFT，并连接已分配给自己的 Ray 集群。HF 仓库尚未公开时，
-下载需要有权限的账号登录。
+需要另行准备 Base SFT，并连接已分配给自己的 Ray 集群。
 
 ## Evaluation configs and commands / 评测配置和启动命令
 

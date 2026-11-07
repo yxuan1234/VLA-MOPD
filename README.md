@@ -29,8 +29,6 @@ The unweighted four-suite mean is 98.85% (1977/2000 successful episodes). Result
 | LIBERO-10 Teacher | [`yxuan1234/Pi05-LIBERO10-Teacher`](https://huggingface.co/yxuan1234/Pi05-LIBERO10-Teacher) | Frozen PPO Teacher for LIBERO-10 |
 | OPD Student, global step 500 | [`yxuan1234/Pi05-LIBERO-OPD-Student-gs500`](https://huggingface.co/yxuan1234/Pi05-LIBERO-OPD-Student-gs500) | Released distilled policy and the evaluation results above |
 
-The three `yxuan1234` model repositories are private and require authorized HF access. The RLinf Base SFT is public.
-
 ### 1. Install RLinf OpenPI + LIBERO
 
 Follow the [official RLinf installation guide](https://rlinf.readthedocs.io/en/latest/rst_source/start/installation.html), then from the repository root run:
